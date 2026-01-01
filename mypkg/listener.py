@@ -9,9 +9,9 @@ node = Node("listener")
 
 def cb(msg):
     global node
-    node.get_logger().info("Listen: %s" % msg)
+    node.get_logger().info(f"Listen: {msg.data}")
 
 
 def main():
-    pub = node.create_subscription(Person, "person", cb, 10)
+    node.create_subscription(Person, "person", cb, 10)
     rclpy.spin(node)
