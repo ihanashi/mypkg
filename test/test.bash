@@ -2,6 +2,7 @@
 set -eux
 
 export COLCON_TRACE=0
+export COLCON_PREFIX_PATH=""
 
 dir=~
 [ "$1" != "" ] && dir="$1"
