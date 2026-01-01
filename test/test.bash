@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eux
 
+export COLCON_TRACE=0
+
 dir=~
 [ "$1" != "" ] && dir="$1"
 
