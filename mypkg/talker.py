@@ -1,22 +1,30 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Person
+from person_msgs.msg import Person
 
-rclpy.init()
-node = Node("talker")
-pub = node.create_publisher(Person, "person", 10)
-n = 0
+class PersonPublisher(Node):
 
+    def __init__(self):
+        super().__init__('person_talker')
+        self.pub = self.create_publisher(Person, 'person', 10)
+        self.timer = self.create_timer(0.5, self.cb)
+        self.count = 0
 
-def cb():
-    global n
-    msg = Person()
-    msg.name = "端無一誠"
-    msg.age = n
-    pub.publish(msg)
-    n += 1
+    def cb(self):
+        msg = Person()
+        msg.name = "Hanashi"
+        msg.age = self.count % 100
+        self.pub.publish(msg)
+        self.get_logger().info(
+            f"Publish: name={msg.name}, age={msg.age}"
+        )
+        self.count += 1
 
 
 def main():
-    node.create_timer(0.5, cb)
+    rclpy.init()
+    node = PersonPublisher()
     rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
