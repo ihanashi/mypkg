@@ -43,15 +43,15 @@ ROS 2 のトピック通信の学習および確認に役立ちます。
 ## 実行方法
 
 ### ビルド
-```bash
-colcon build
-source install/setup.bash
+'''bsah
+- `/person` colcon build
+- source install/setup.bash
 
 ---
 
 ## ノードの起動
 
-- 別々のターミナルで以下を実行します。
+- `/person` 別々のターミナルで以下を実行します。
 
 - ros2 run person_counter talker
 
@@ -61,11 +61,13 @@ source install/setup.bash
 
 ## 動作例
 
-- [INFO] Received 5 people | Latest: Hanashi (4) | Average age: 2.0
+- `/person` [INFO] Received 5 people | Latest: Hanashi (4) | Average age: 2.0
+
+---
 
 ## ライセンス
 
-- BSD-3-Clause
+- `/person` BSD-3-Clause
 
 - このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されています。
 - ©2025 Issei Hanahsi
