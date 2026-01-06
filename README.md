@@ -47,21 +47,25 @@ ROS 2 のトピック通信の学習および確認に役立ちます。
 colcon build
 source install/setup.bash
 
-ノードの起動
+---
 
-別々のターミナルで以下を実行します。
+## ノードの起動
 
-#ros2 run person_counter talker
+- 別々のターミナルで以下を実行します。
 
-#ros2 run person_counter listener
+- ros2 run person_counter talker
 
-動作例
+- ros2 run person_counter listener
 
-#[INFO] Received 5 people | Latest: Hanashi (4) | Average age: 2.0
+---
 
-ライセンス
+## 動作例
 
-BSD-3-Clause
+- [INFO] Received 5 people | Latest: Hanashi (4) | Average age: 2.0
 
-このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されています。
-©2025 Issei Hanahsi
+## ライセンス
+
+- BSD-3-Clause
+
+- このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されています。
+- ©2025 Issei Hanahsi
