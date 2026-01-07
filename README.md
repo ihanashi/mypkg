@@ -46,9 +46,9 @@ ROS 2 のトピック通信の学習および動作確認に役立ちます。
 
 以下の手順でビルドを行います。
 
-```bash
-colcon build
-source install/setup.bash
+- ```bash
+- colcon build
+- source install/setup.bash
 
 ---
 
