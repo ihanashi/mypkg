@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Issei Hanashi
+# SPDX-License-Identifier: BSD-3-Clause
 #!/bin/bash
 
 dir=~
