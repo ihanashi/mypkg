@@ -33,10 +33,10 @@ listener ノードは以下の処理を行います。
 
 本パッケージでは、以下のフィールドを持つメッセージ型を想定しています。
 
-```text
-string name
-int32 age
-*このメッセージ型は person_msgs パッケージで定義された独自メッセージです。
+- ```text
+- string name
+- int32 age
+- *このメッセージ型は person_msgs パッケージで定義された独自メッセージです。
 
 ---
 
