@@ -33,7 +33,6 @@ listener ノードは以下の処理を行います。
 
 本パッケージでは、以下のフィールドを持つメッセージ型を想定しています。
 
-- ```text
 - string name
 - int32 age
 - *このメッセージ型は person_msgs パッケージで定義された独自メッセージです。
@@ -70,18 +69,20 @@ source install/setup.bash
 ---
 
 ## ノードの起動
+
 動作確認用（talker を使用する場合）
 
-2つのターミナルを開き、それぞれで以下を実行します。
-ターミナル1
-ros2 run person_counter talker
-ターミナル2
-ros2 run person_counter listener
+- 2つのターミナルを開き、それぞれで以下を実行します。
+- ターミナル1
+- ros2 run person_counter talker
+- ターミナル2
+- ros2 run person_counter listener
 
 実運用時
-人物検出・認識ノードなどが /person トピックを publish している状態で、
+
+- 人物検出・認識ノードなどが /person トピックを publish している状態で、
 listener ノードのみを起動します。
-ros2 run person_counter listener
+- ros2 run person_counter listener
 ---
 
 ## 動作例
