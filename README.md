@@ -1,47 +1,58 @@
 # person_counter
 
-ROS 2で `Person` メッセージを購読し、受信した人数と平均年齢を集計・表示するパッケージです。  
-人物情報（名前・年齢など）を含むトピック通信に対して、
-データの流れや内容を定量的に確認・可視化することを目的としています。
+`person_counter` は、外部ノードが publish する人物情報を購読し、
+人数および年齢に関する統計情報を集計・表示する ROS 2 パッケージです。
 
-ROS 2 における publish / subscribe モデルの動作確認や、
-メッセージ内容が時間とともにどのように変化しているかを把握する用途にも適しています。
+人物検出・認識ノードなどが出力するデータを横取りして集計結果を確認するための
+**補助的な可視化・解析ノード**としての利用を想定しています。
 
 
 ---
 
 ## 概要
 
-このパッケージは、`Person` 型メッセージを送信するノード（talker）と、  
-それを購読して統計情報を表示するノード（listener）から構成されています。
+このパッケージは、人物情報を送信するノード（talker）と、
+人物情報を受信・集計するノード（listener）から構成されています。
 
 listener ノードは以下の処理を行います。
 
-- 受信したメッセージ数のカウント
+- 受信した人物メッセージ数のカウント
 - 年齢の合計および平均年齢の計算
 - 最新に受信した人物情報の表示
 
-ROS 2 のトピック通信の学習および動作確認に役立ちます。
+実運用では、talker の代わりに人物検出・認識ノードなどと接続して使用します。
 
 ---
 
-## 使用しているトピック
+## 使用しているトピックとメッセージ型
 
-| トピック名 | 型 |
-|------------|----|
-| `/person`  | `person_msgs/msg/Person` |
+- トピック名: `/person`
+- メッセージ型: `person_msgs/msg/Person`
+
+### Person メッセージの内容
+
+本パッケージでは、以下のフィールドを持つメッセージ型を想定しています。
+
+```text
+string name
+int32 age
+*このメッセージ型は person_msgs パッケージで定義された独自メッセージです。
 
 ---
 
 ## ノード説明
 
 ### person_talker
-- `Person` メッセージを一定周期で publish します
-- 名前と年齢のダミーデータを送信します
+- person_msgs/msg/Person 型のメッセージを一定周期で publish します
+
+- listener ノードの動作確認用の簡易送信ノードです
 
 ### person_listener
-- `/person` トピックを subscribe します
-- 受信回数、最新データ、平均年齢をログとして出力します
+- /person トピックを subscribe します
+
+- 受信した人物数、最新の人物情報、平均年齢をログとして出力します
+
+- 他の人物検出・認識ノードと接続して使うことを想定しています
 
 ---
 
@@ -51,20 +62,26 @@ ROS 2 のトピック通信の学習および動作確認に役立ちます。
 
 以下の手順でビルドを行います。
 
-- bash
-- colcon build
-- source install/setup.bash
+cd ~/ros2_ws
+colcon build --packages-select person_counter
+source install/setup.bash
+
 
 ---
 
 ## ノードの起動
+動作確認用（talker を使用する場合）
 
-- 2つのターミナルを開き、それぞれで以下を実行します。
-- ターミナル1
+2つのターミナルを開き、それぞれで以下を実行します。
+ターミナル1
 ros2 run person_counter talker
-- ターミナル2
+ターミナル2
 ros2 run person_counter listener
 
+実運用時
+人物検出・認識ノードなどが /person トピックを publish している状態で、
+listener ノードのみを起動します。
+ros2 run person_counter listener
 ---
 
 ## 動作例
@@ -73,6 +90,13 @@ ros2 run person_counter listener
 [INFO] Received 5 people | Latest: Hanashi (4) | Average age: 2.0
 - これは、5件の Person メッセージを受信し、
 最新の人物情報と平均年齢を表示していることを示しています。
+
+---
+
+## テスト
+
+本パッケージには test/test.bash による簡易テストが含まれています。
+このテストでは、ノードが正常に起動できることを確認します。
 
 ---
 
