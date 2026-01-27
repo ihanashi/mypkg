@@ -60,11 +60,11 @@ listener ノードは以下の処理を行います。
 ### ビルド
 
 以下の手順でビルドを行います。
-
+```text
 cd ~/ros2_ws
 colcon build --packages-select person_counter
 source install/setup.bash
-
+```
 
 ---
 
@@ -74,22 +74,29 @@ source install/setup.bash
 
 - 2つのターミナルを開き、それぞれで以下を実行します。
 - ターミナル1
-- ros2 run person_counter talker
+```text
+ ros2 run person_counter talker
+```
 - ターミナル2
-- ros2 run person_counter listener
-
+```text
+ ros2 run person_counter listener
+```
 実運用時
 
 - 人物検出・認識ノードなどが /person トピックを publish している状態で、
 listener ノードのみを起動します。
-- ros2 run person_counter listener
+```text
+ ros2 run person_counter listener
+```
 ---
 
 ## 動作例
 
-- listener ノードを起動すると、以下のようなログが出力されます。
+ listener ノードを起動すると、以下のようなログが出力されます。
+```text
 [INFO] Received 5 people | Latest: Hanashi (4) | Average age: 2.0
-- これは、5件の Person メッセージを受信し、
+```
+これは、5件の Person メッセージを受信し、
 最新の人物情報と平均年齢を表示していることを示しています。
 
 ---
